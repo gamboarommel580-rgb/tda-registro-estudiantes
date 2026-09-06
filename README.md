@@ -1,6 +1,6 @@
 # Tarea — SOLID + DDD + Clean Architecture + Arquitectura Hexagonal — C#
 
-**Nombre completo:** _________________________________
+**Nombre completo:** Gamboa Araujo Rommel Fabricio
 
 | Dato | Descripción |
 |---|---|
@@ -24,8 +24,6 @@ Ejecución del código inicial antes de refactorizar:
 cd PedidoApp.Inicial
 dotnet run
 ```
-
-![Captura del código inicial ejecutándose](capturas/01_codigo_inicial.png)
 
 El programa funciona: registra el pedido NORMAL (total 70) y el VIP (total 63). Sin embargo, `RetiroLocal.ProgramarDireccion()` lanza `NotSupportedException` y `NotificadorConsola` implementa métodos que no usa.
 
@@ -361,7 +359,7 @@ public class Pedido
 | Cliente obligatorio | `Pedido` (constructor) |
 | No confirmar un pedido vacío | `Pedido.Confirmar()` |
 
-**Explicación (máximo 3 líneas):**
+**Explicación():**
 
 > Al dominio pasaron las reglas de `PedidoItem` (producto obligatorio, precio válido y cantidad mayor que cero) y las de `Pedido` (cliente obligatorio y no confirmar un pedido vacío).
 > El estado dejó de ser público: los setters son privados y la lista de ítems se expone como `IReadOnlyCollection`, por lo que solo cambia mediante `AgregarItem()`.
@@ -371,7 +369,6 @@ public class Pedido
 
 ## 5. Clean Architecture
 
-![Captura de la estructura final de carpetas](capturas/02_estructura.png)
 
 ```
 PedidoApp/
@@ -407,7 +404,7 @@ PedidoApp/
 | Infrastructure | Implementar `PedidoRepositoryMemoria`. |
 | Program.cs | Crear objetos y ejecutar el ejemplo. |
 
-**Explicación (máximo 4 líneas):**
+**Explicación ():**
 
 > `Domain` contiene `Pedido`, `PedidoItem` y las reglas del negocio, y no declara ningún `using` hacia `Application` ni `Infrastructure`.
 > `Application` coordina el registro y declara `IPedidoRepository`, es decir, expresa lo que necesita sin saber cómo se implementa.
@@ -460,19 +457,13 @@ dotnet run
 
 **Caso 1 — Pedido NORMAL válido**
 
-![Caso 1](capturas/03_caso1_normal.png)
-
 **Caso 2 — Pedido VIP válido**
-
-![Caso 2](capturas/04_caso2_vip.png)
 
 **Caso 3 — Pedido con cantidad 0**
 
-![Caso 3](capturas/05_caso3_cantidad_cero.png)
 
 **Caso 4 — RetiroLocal**
 
-![Caso 4](capturas/06_caso4_retirolocal.png)
 
 Salida esperada de referencia:
 
