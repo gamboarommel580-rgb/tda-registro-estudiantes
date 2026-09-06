@@ -6,7 +6,6 @@
 |---|---|
 | Modalidad | Individual |
 | Tecnología | C# / .NET — aplicación de consola |
-| Entrega | Un solo PDF con capturas y fragmentos de código |
 
 ---
 
