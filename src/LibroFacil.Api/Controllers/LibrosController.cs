@@ -13,7 +13,6 @@ namespace LibroFacil.Api.Controllers
     [Route("api/[controller]")]
     public class LibrosController : ControllerBase
     {
-        // Depende de la abstracción ILibroService, no de la clase concreta.
         private readonly ILibroService _libroService;
 
         public LibrosController(ILibroService libroService)
