@@ -27,13 +27,11 @@ namespace LibroFacil.Application.Services
 
         public async Task<Libro> CrearAsync(string isbn, string titulo, string autor, int anioPublicacion, int stock)
         {
-            // Regla 1 (unicidad del ISBN): es la única regla que necesita consultar
-            // el repositorio, por eso vive en Application y no en la entidad.
+
             var libroExistente = await _libroRepository.ObtenerPorIsbnAsync(isbn);
             if (libroExistente != null)
                 throw new DomainException("Ya existe un libro registrado con el mismo ISBN.");
 
-            // Las reglas 1 (obligatoriedad), 2, 3, 4 y 5 las valida la propia entidad.
             var nuevoLibro = new Libro(isbn, titulo, autor, anioPublicacion, stock);
 
             await _libroRepository.AgregarAsync(nuevoLibro);

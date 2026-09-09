@@ -12,7 +12,6 @@ namespace LibroFacil.Domain.Entities
         public int AnioPublicacion { get; private set; }
         public int Stock { get; private set; }
 
-        // Constructor requerido por EF Core para materializar la entidad.
         private Libro() { }
 
         public Libro(string isbn, string titulo, string autor, int anioPublicacion, int stock)
@@ -27,8 +26,7 @@ namespace LibroFacil.Domain.Entities
 
         private void AsignarDatos(string isbn, string titulo, string autor, int anioPublicacion, int stock)
         {
-            // Se valida TODO antes de asignar cualquier propiedad, para que un dato
-            // inválido nunca deje la entidad en un estado intermedio inconsistente.
+
             ValidarIsbn(isbn);
             ValidarTitulo(titulo);
             ValidarAutor(autor);

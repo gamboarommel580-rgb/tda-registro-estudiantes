@@ -21,7 +21,6 @@ namespace LibroFacil.Api.Controllers
             _libroService = libroService;
         }
 
-        // GET /api/libros
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LibroRespuestaDto>>> ObtenerTodos()
         {
@@ -29,7 +28,6 @@ namespace LibroFacil.Api.Controllers
             return Ok(libros.Select(MapearADto));
         }
 
-        // GET /api/libros/{id}
         [HttpGet("{id:int}")]
         public async Task<ActionResult<LibroRespuestaDto>> ObtenerPorId(int id)
         {
@@ -40,7 +38,6 @@ namespace LibroFacil.Api.Controllers
             return Ok(MapearADto(libro));
         }
 
-        // POST /api/libros
         [HttpPost]
         public async Task<ActionResult<LibroRespuestaDto>> Crear([FromBody] CrearLibroDto dto)
         {
@@ -60,7 +57,6 @@ namespace LibroFacil.Api.Controllers
             }
         }
 
-        // PUT /api/libros/{id}
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Actualizar(int id, [FromBody] ActualizarLibroDto dto)
         {
@@ -81,7 +77,6 @@ namespace LibroFacil.Api.Controllers
             }
         }
 
-        // DELETE /api/libros/{id}
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Eliminar(int id)
         {
@@ -96,7 +91,6 @@ namespace LibroFacil.Api.Controllers
             }
         }
 
-        // Única responsabilidad del controlador: traducir Dominio <-> DTO y HTTP.
         private static LibroRespuestaDto MapearADto(Libro libro) => new LibroRespuestaDto
         {
             Id = libro.Id,
